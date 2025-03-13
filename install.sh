@@ -22,6 +22,10 @@ echo -n "Changing to the $dir directory ..."
 cd $dir
 echo "done"
 
+git submodule init
+git submodule update
+wait
+
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
@@ -29,9 +33,6 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
-
-git submodule init
-git submodule update
 
 # copy the contents of the bash-git-prompt submodule to ~/.bash-git-prompt
 echo -n "Copying bash-git-prompt to ~/.bash-git-prompt ..."
