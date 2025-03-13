@@ -30,6 +30,9 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
+git submodule init
+git submodule update
+
 # copy the contents of the bash-git-prompt submodule to ~/.bash-git-prompt
 echo -n "Copying bash-git-prompt to ~/.bash-git-prompt ..."
 cp -r $dir/bash-git-prompt ~/.bash-git-prompt
