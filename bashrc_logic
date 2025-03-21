@@ -1,0 +1,21 @@
+
+
+function svlint() {
+  docker run -it --rm -v $(pwd):/github/workspace -w /github/workspace  ghcr.io/oxosmedical/verilator -c .svlint.toml ./hdl/*.sv
+}
+
+function pytest() {
+    docker run -it --rm -v $(pwd):/github/workspace -w /github/workspace --entrypoint pytest  ghcr.io/oxosmedical/verilator --rootdir=./test "$@"
+}
+
+function pytest-test() {
+    docker run -it --rm -v $(pwd):/github/workspace -w /github/workspace --entrypoint pytest  ghcr.io/oxosmedical/cocotb-test --rootdir=./test "$@"
+}
+
+function verilator_coverage() {
+  docker run -it --rm -v $(pwd):/github/workspace -w /github/workspace --entrypoint verilator_coverage ghcr.io/oxosmedical/verilator  "$@"
+}
+
+function genhtml() {
+  docker run -it --rm -v $(pwd):/github/workspace -w /github/workspace --entrypoint genhtml ghcr.io/oxosmedical/verilator  "$@"
+}
